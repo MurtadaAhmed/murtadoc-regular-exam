@@ -43,3 +43,13 @@ jobs:
       run: npm start &
     - name: Running the UI tests
       run: npm run test:ui  
+
+  render_deploy_cookbook:
+    needs: ui_test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy Cookbook to Render
+        uses: johnbeynon/render-deploy-action@v0.0.8
+        with:
+          service-id: ${{ secrets.MY_RENDER_SERVICE_ID_COOKBOOK_MURTADOC }}
+          api-key: ${{ secrets.MY_RENDER_API_KEY_COOKBOOK_MURTADOC }}
